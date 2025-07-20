@@ -1,19 +1,12 @@
 <?php
-// Copiado de config.php-dist com ajustes para SQLite
+putenv('TTRSS_ENV=production');
 
 define('DB_TYPE', 'sqlite');
-define('DB_HOST', '');
-define('DB_USER', '');
-define('DB_NAME', 'tt-rss.sqlite');
-define('DB_PASS', '');
-define('DB_PORT', '');
-define('MYSQL_CHARSET', 'utf8');
+define('DB_NAME', 'ttrss.sqlite');
 
 define('SELF_URL_PATH', 'https://ttrss-render-sqlite.onrender.com/');
-define('SINGLE_USER_MODE', false);
-define('SESSION_COOKIE_LIFETIME', 86400);
-define('ENABLE_GZIP_OUTPUT', true);
-define('PLUGINS', 'auth_internal, note');
+define('ADMIN_USER', 'admin');
+define('ADMIN_PASS', 'admin'); // Troque por segurança depois
 
-define('LOG_DESTINATION', 'sql');
-define('CONFIG_VERSION', 26);
+define('SINGLE_USER_MODE', true);
+define('ENABLE_GZIP_OUTPUT', true);
