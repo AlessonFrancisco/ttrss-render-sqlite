@@ -19,7 +19,8 @@ RUN chown -R www-data:www-data /var/www/html
 RUN a2enmod rewrite
 
 # Porta padrão do Render
-EXPOSE 10000
+EXPOSE 80
+ENV PORT=80
 
 # Define o diretório de trabalho
 WORKDIR /var/www/html
