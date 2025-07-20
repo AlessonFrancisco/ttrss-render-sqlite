@@ -18,4 +18,5 @@ COPY ttrss.sqlite .
 # Permissões
 RUN chown www-data:www-data /var/www/html/ttrss.sqlite && chmod 664 /var/www/html/ttrss.sqlite
 
+ENV PORT=80
 EXPOSE 80
