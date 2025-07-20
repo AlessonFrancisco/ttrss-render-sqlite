@@ -1,12 +1,12 @@
 <?php
-putenv('TTRSS_ENV=production');
+define('DB_TYPE', "sqlite");
+define('DB_HOST', "");
+define('DB_USER', "");
+define('DB_NAME', "ttrss.sqlite");
+define('DB_PASS', "");
+define('DB_PORT', "");
+define('SQLITE_USE_SHARED_MEMORY', false);
 
-define('DB_TYPE', 'sqlite');
-define('DB_NAME', 'ttrss.sqlite');
-
-define('SELF_URL_PATH', 'https://ttrss-render-sqlite.onrender.com/');
-define('ADMIN_USER', 'admin');
-define('ADMIN_PASS', 'admin'); // Troque por segurança depois
-
-define('SINGLE_USER_MODE', true);
-define('ENABLE_GZIP_OUTPUT', true);
+define('SELF_URL_PATH', 'https://SEU_DOMINIO_DO_RENDER.com/');
+define('ENABLE_GZIP_OUTPUT', false);
+define('LANGUAGE', 'pt_BR.UTF-8');
