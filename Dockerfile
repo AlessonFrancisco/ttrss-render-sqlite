@@ -1,6 +1,7 @@
 FROM php:8.1-apache
 
 RUN apt-get update && apt-get install -y libsqlite3-dev unzip git \
+    && docker-php-ext-configure pdo_sqlite --with-pdo-sqlite=/usr/local \
     && docker-php-ext-install pdo pdo_sqlite
 
 WORKDIR /var/www/html
@@ -16,4 +17,3 @@ RUN chown www-data:www-data /var/www/html/ttrss.sqlite && chmod 664 /var/www/htm
 
 EXPOSE 80
 ENV PORT=80
-
