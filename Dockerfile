@@ -1,28 +1,21 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
-# Instala dependências do TT-RSS
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libpq-dev \
-    libsqlite3-dev \
-    sqlite3 \
-    && docker-php-ext-install pdo pdo_sqlite
+# Instalar extensões necessárias
+RUN apt-get update && \
+    apt-get install -y libsqlite3-dev unzip git && \
+    docker-php-ext-install pdo pdo_sqlite
 
-# Clona o TT-RSS
-RUN git clone https://git.tt-rss.org/fox/tt-rss.git /var/www/html
-
-# Ajusta permissões
-RUN chown -R www-data:www-data /var/www/html
-
-# Habilita módulos do Apache
-RUN a2enmod rewrite
-
-# Porta padrão do Render
-EXPOSE 80
-ENV PORT=80
-
-# Define o diretório de trabalho
+# Clonar TT-RSS
 WORKDIR /var/www/html
+RUN git clone https://git.tt-rss.org/fox/tt-rss.git . && \
+    mkdir -p cache/images cache/upload cache/export && \
+    chown -R www-data:www-data /var/www/html
 
-CMD ["apache2-foreground"]
+# Copiar config e banco SQLite
+COPY config.php .
+COPY ttrss.sqlite .
+
+# Permissões
+RUN chown www-data:www-data /var/www/html/ttrss.sqlite && chmod 664 /var/www/html/ttrss.sqlite
+
+EXPOSE 80
